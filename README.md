@@ -29,7 +29,7 @@ Si no hay ningún error ve a [`localhost:4000`](http://localhost:4000) en tu nav
 Para ejecutar el proyecto en entorno productivo, [consulta la documentación aquí](https://hexdocs.pm/phoenix/deployment.html).
 
 ## Soporte y dudas
-Si hay algo que haya redactado mal o no es posible ejecutar el proyecto por escribeme a mi [correo](mailto:jestorres10@gmail.com)
+Si hay algo que haya redactado mal o no es posible ejecutar el proyecto, por favor, escribeme a mi [correo](mailto:jestorres10@gmail.com)
 
 ## Extras
 También realicé el bonus de la prueba... :)
