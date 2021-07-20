@@ -1,4 +1,97 @@
-<section class="phx-hero">
-  <h1><%= gettext "Resuelve tu sueldo" %></h1>
-</section>
-
+<div class="w-full h-screen inline-flex items-center">
+  <div class="w-3/4 bg-white rounded p-6 mx-auto shadow">
+    <label class="block text-2xl text-center">Resuelve tu sueldo</label>
+    <div class="w-full flex mt-4">
+        <div class="mx-auto w-1/2">
+          <div class="w-full inline-flex items-center py-2 font-bold">
+              <div class="w-1/3 text-center">Nivel</div>
+              <div class="w-1/3 text-center">Goles/Mes</div>
+              <div class="w-1/3 text-center">Acción</div>
+          </div>
+          <%= for min <- @mins do %>
+            <hr class="w-full border border-gray-200">
+            <div class="w-full inline-flex items-center py-2">
+              <div class="w-1/3 text-center"><%= min.name %></div>
+              <div class="w-1/3 text-center"><%= min.value %></div>
+              <div class="w-1/3 text-center">
+                <button phx-click="change_value" phx-value-name="<%= min.name %>" class="w-8 h-8 rounded-full bg-pink-800 text-white nline-flex items-center">
+                  <svg aria-hidden="true" focusable="false" data-prefix="fas" data-icon="pencil-alt" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"
+                  class="mx-auto w-4 h-4">
+                    <path fill="currentColor" d="M497.9 142.1l-46.1 46.1c-4.7 4.7-12.3 4.7-17 0l-111-111c-4.7-4.7-4.7-12.3 0-17l46.1-46.1c18.7-18.7 49.1-18.7 67.9 0l60.1 60.1c18.8 18.7 18.8 49.1 0 67.9zM284.2 99.8L21.6 362.4.4 483.9c-2.9 16.4 11.4 30.6 27.8 27.8l121.5-21.3 262.6-262.6c4.7-4.7 4.7-12.3 0-17l-111-111c-4.8-4.7-12.4-4.7-17.1 0zM124.1 339.9c-5.5-5.5-5.5-14.3 0-19.8l154-154c5.5-5.5 14.3-5.5 19.8 0s5.5 14.3 0 19.8l-154 154c-5.5 5.5-14.3 5.5-19.8 0zM88 424h48v36.3l-64.5 11.3-31.1-31.1L51.7 376H88v48z" class="">
+                    </path>
+                  </svg>
+                </button>
+              </div>
+            </div>
+          <% end %>
+        </div>
+    </div>
+    <div class="w-full inline-flex items-center">
+      <form phx-change="update_form" phx-submit="submit_form" class="p-2 w-1/2">
+        <label class="text-lg">Ingresa tus jugadores </label>
+        <textarea name="json" class="rounded bg-gray-200 h-56 mt-4 text-sm w-full"></textarea>
+        <%= if @error.status do %>
+          <label class="block font-bold text-sm text-red-600"><%= @error.message %></label>
+        <% end %>
+      </form>
+    </div>
+    <div class="w-full mt-3">
+        <%= if @json_result != "" do %>
+          <div class="w-full inline-flex items-center bg-gray-900 text-white rounded-t font-bold text-lg">
+            <div class="w-1/3 p-3">Nombre del equipo</div>
+            <div class="w-1/3 p-3">Jugadores</div>
+          </div>
+          <%= for team <- @arr_team do %>
+            <div class="w-full p-2 inline-flex items-center">
+              <div class="w-1/3 p-3"><%= team |> List.first |> Map.get("equipo") %></div>
+              <div class="w-2/3 p-3">
+                <div class="w-full p-2 inline-flex items-center bg-gray-300">
+                  <label class="font-bold w-2/12">Nombre</label>
+                  <label class=" w-2/12">Sueldo</label>
+                  <label class=" w-2/12">Bono</label>
+                  <label class=" w-2/12">Goles</label>
+                  <label class=" w-2/12">Nivel</label>
+                  <label class=" w-2/12">Sueldo completo</label>
+                </div>
+                <%= for player <- team do %>
+                  <div class="w-full p-2 inline-flex items-center">
+                    <label class="font-bold w-2/12"><%= player["nombre"] %></label>
+                    <label class=" w-2/12"><%= Number.Currency.number_to_currency("#{player["sueldo"]}") %></label>
+                    <label class=" w-2/12"><%= Number.Currency.number_to_currency("#{player["bono"]}") %></label>
+                    <label class=" w-2/12"><%=  player["goles"] %></label>
+                    <label class=" w-2/12"><%=  player["nivel"] %></label>
+                    <label class=" w-2/12"><%=  Number.Currency.number_to_currency("#{player["sueldo_completo"]}") %></label>
+                  </div>
+                <% end %>
+              </div>
+            </div>
+          <% end %>
+        <% end %>
+    </div>
+  </div>
+</div>
+<%= if @edit_value.name != nil do %>
+  <div class="w-full fixed top-0 left-0 h-screen bg-transparent inline-flex items-center">
+      <div class="p-4 bg-white rounded-lg mx-auto w-64">
+        <label class="block text-xl font-bold">Edita el actual nivel <%= @edit_value.original_name %></label>
+        <form phx-change="update_edit" phx-submit="save_edit" class="w-full mt-4">
+          <div class="w-full block">
+            <label class="block text-sm font-medium">Nombre</label>
+            <input name="name" value="<%= @edit_value.name %>" class="w-full p-2 bg-gray-300 rounded">
+          </div>
+          <div class="w-full block mt-2">
+            <label class="block text-sm font-medium">Goles</label>
+            <input name="value" type="number" min="0" step="1" value="<%= @edit_value.value %>" class="w-full p-2 bg-gray-300 rounded">
+          </div>
+          <div class="w-full inline-flex items-center mt-5">
+            <button type="button" phx-click="exit_edit" class="py-2 px-4 bg-gray-400 ml-auto mr-1 rounded">
+              Salir
+            </button>
+            <button class="py-2 px-4 bg-blue-900 text-white mr-auto ml-1 rounded">
+              Guardar
+            </button>
+          </div>
+        </form>
+      </div>
+  </div>
+<% end %>

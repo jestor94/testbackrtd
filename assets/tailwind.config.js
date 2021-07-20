@@ -3,6 +3,9 @@ module.exports = {
     extend: {
       colors: {
         'transparent': '#000000CF'
+      },
+      spacing: {
+        '72': '18rem'
       }
     }
   }

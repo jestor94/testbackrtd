@@ -10,14 +10,21 @@
     <script defer phx-track-static type="text/javascript" src="<%= Routes.static_path(@conn, "/js/app.js") %>"></script>
   </head>
   <body class="bg-gray-100">
-    <header>
-      <section class="container">
+    <div class="flex ... space-y-8">
+      <div class="flex-none w-16 h-16 ...">
         
-        <a href="#" class="phx-logo">
-          <img src="https://resuelvetudeuda.com/wp-content/themes/rtd-2021/img/logo_resuelvetudeuda.svg" alt="RTD Logo"/>
-        </a>
-      </section>
-    </header>
+      </div>
+      <div class="flex-grow w-16 h-16 ... ">
+        <img src="https://resuelvetudeuda.com/wp-content/themes/rtd-2021/img/logo_resuelvetudeuda.svg" alt="RTD Logo"/>
+      </div>
+      <div class="flex-none w-16 h-16 ... ">
+       
+      </div>
+    </div>
+    <br/>
+    <br/>
+    
     <%= @inner_content %>
+    
   </body>
 </html>
