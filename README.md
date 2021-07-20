@@ -1,22 +1,22 @@
 # Resuelve Tu deuda Backend Test
 
 ## Descripción
-La siguiente prueba consiste en una propuesta de solución para la siguiente problemática plasmada en el siguiente [enlace.](https://github.com/resuelve/prueba-ing-backend/blob/master/README.md).
+La siguiente prueba consiste en una propuesta de solución para la siguiente problemática plasmada en el siguiente [enlace](https://github.com/resuelve/prueba-ing-backend/blob/master/README.md).
 
-La intención de usar Phoenix server, con Elixir y Typescript, primera es, porque conozco que es su stack principal (Elixir). Además este lenguaje es muy poco común y yo tuve la oportunidad de trabajar con el por unos meses... Tuve que retomar casos de estudio para poder concluir la prueba usando esta tecnología.
+La intención de usar Phoenix server, con Elixir y JavaScript, primera es, porque conozco que es su stack principal (Elixir). Además este lenguaje es muy poco común y yo tuve la oportunidad de trabajar con el por unos meses... Tuve que retomar casos de estudio para poder concluir la prueba usando esta tecnología.
 Utilicé LiveView y hooks para tener el toque del tiempo real...
 
-Para el framework visual, decidí utilizar Tailwind, es para no hacer una aplicación sencilla, muy pesada al cargar todos los componentes nativos, y mejor solo utilizar lo que se necesita, las clases básicas para armar grids, estilizar botones y componentes básicos, aprovechando la ventaja que tiene al integrar plugins de JS..
+Para el framework de estilos (CSS), decidí utilizar Tailwind, es para no hacer qué, una aplicación sencilla, se convirtiera en una muy pesada al cargar todos los componentes nativos, y mejor solo utilizar las clases necesarias; para armar grids, estilizar botones y componentes básicos, aprovechando la ventaja que tiene al integrar plugins de JS...
 
 
 ## Instalación
 Para descargar y ejecutar este proyecto, primero es necesario instalar las siguientes dependencias en tu equipo
 
-[Elixir](https://elixir-lang.org/install.html)
-[Phoenix](https://hexdocs.pm/phoenix/installation.html)
-[Node](https://nodejs.org/es/download/)
+  * [Elixir](https://elixir-lang.org/install.html)
+  * [Phoenix](https://hexdocs.pm/phoenix/installation.html)
+  * [Node](https://nodejs.org/es/download/)
 
-Recomiendo utilizar [NVM](https://github.com/nvm-sh/nvm) para un mejor control de versiones a futuro.
+Recomiendo utilizar [NVM](https://github.com/nvm-sh/nvm) para un mejor control de versiones de Node.js a futuro.
 
 Después de clonar el proyecto, se tienen que ejecutar los siguientes comandos en la carpeta raíz del proyecto
 
